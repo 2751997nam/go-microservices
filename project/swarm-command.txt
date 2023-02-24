@@ -1,0 +1,11 @@
+docker stack deploy -c swarm.yml myapp
+
+docker service scale myapp_listener-service=3
+
+docker service update --image nambcvt/logger-service:1.0.1 myapp_logger-service
+
+//stop
+docker service scale myapp_listener-service=0
+
+//stop all
+docker stack rm myapp 
